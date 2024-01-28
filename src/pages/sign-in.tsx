@@ -1,0 +1,31 @@
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { useAuth } from '../hooks/useAuth';
+
+type Inputs = {
+    email: string;
+    password: string;
+};
+
+export function SignIn() {
+    const { signIn } = useAuth();
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<Inputs>();
+
+    const onSubmit: SubmitHandler<Inputs> = (data) =>
+        signIn(data)
+            .then((res) => console.log(res))
+            .catch((err) => console.error(err.code, err.message));
+
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input type="email" {...register('email', { required: true })} />
+            <input type="password" {...register('password')} />
+            <button type="submit">Submit</button>
+        </form>
+    );
+}
