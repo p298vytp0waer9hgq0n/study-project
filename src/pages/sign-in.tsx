@@ -9,12 +9,7 @@ type Inputs = {
 
 export function SignIn() {
     const { signIn } = useAuth();
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm<Inputs>();
+    const { register, handleSubmit } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = (data) => signIn(data);
 

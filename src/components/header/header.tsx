@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
-import { useAppSelector } from '../../providers/store/hooks';
 
 import styles from './header.module.css';
 
 export function Header() {
-    // const { user } = useAppSelector((store) => store.user);
     const { user } = useAuth();
 
     return (
         <header className={styles.header}>
-            <h1>Site name</h1>
+            <h1>
+                <Link to={'/'}>Site name</Link>
+            </h1>
             <nav>
                 <ul className={styles.navigation}>
                     <li>

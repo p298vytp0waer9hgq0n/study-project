@@ -1,3 +1,11 @@
+import { useAuth } from '../hooks/useAuth';
+
 export function Home() {
-    return <p>Main Page</p>;
+    const { user } = useAuth();
+    return (
+        <>
+            <p>Main Page</p>
+            {user && <p>{`You are logged in as ${user.email}`}</p>}
+        </>
+    );
 }

@@ -10,12 +10,7 @@ type Inputs = {
 export function SignUp() {
     const { signUp } = useAuth();
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm<Inputs>();
+    const { register, handleSubmit } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = (data) => signUp(data);
 
