@@ -10,27 +10,39 @@ export function Header() {
     return (
         <header className={styles.header}>
             <h1>
-                <Link to={'/'}>Site name</Link>
+                <Link className={styles.title} to={'/'}>
+                    Site name
+                </Link>
             </h1>
             <nav>
                 <ul className={styles.navigation}>
-                    <li>
-                        <Link to={'/favorite'}>Favorite</Link>
-                    </li>
                     {!user && (
                         <>
                             <li>
-                                <Link to={'/signup'}>Sign Up</Link>
+                                <Link className={styles.navlink} to={'/signup'}>
+                                    Sign Up
+                                </Link>
                             </li>
                             <li>
-                                <Link to={'/signin'}>Sign In</Link>
+                                <Link className={styles.navlink} to={'/signin'}>
+                                    Sign In
+                                </Link>
                             </li>
                         </>
                     )}
                     {user && (
-                        <li>
-                            <Link to={'/signout'}>Sign Out</Link>
-                        </li>
+                        <>
+                            <li>
+                                <Link className={styles.navlink} to={'/favorite'}>
+                                    Favorite
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className={styles.navlink} to={'/signout'}>
+                                    Sign Out
+                                </Link>
+                            </li>
+                        </>
                     )}
                 </ul>
             </nav>
