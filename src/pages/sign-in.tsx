@@ -16,10 +16,7 @@ export function SignIn() {
         formState: { errors },
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) =>
-        signIn(data)
-            .then((res) => console.log(res))
-            .catch((err) => console.error(err.code, err.message));
+    const onSubmit: SubmitHandler<Inputs> = (data) => signIn(data);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

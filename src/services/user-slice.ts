@@ -3,9 +3,9 @@ import { User } from 'firebase/auth';
 
 import { fbSignIn, fbSignOut, fbSignUp } from '../api/firebase-auth';
 
-export const signIn = createAsyncThunk('user/signIn', fbSignIn);
-export const signOut = createAsyncThunk('user/signOut', fbSignOut);
-export const signUp = createAsyncThunk('user/signUp', fbSignUp);
+export const signInThunk = createAsyncThunk('user/signIn', fbSignIn);
+export const signOutThunk = createAsyncThunk('user/signOut', fbSignOut);
+export const signUpThunk = createAsyncThunk('user/signUp', fbSignUp);
 
 type UserState = {
     user: User | null;
@@ -15,7 +15,7 @@ type UserState = {
 
 const initialState: UserState = {
     user: null,
-    isLoading: true,
+    isLoading: false,
     hasError: false,
 };
 
@@ -23,9 +23,6 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setLogoff: () => {
-            return initialState;
-        },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
         },
@@ -34,8 +31,11 @@ export const userSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(signIn.fulfilled, (state, action) => {
+        builder.addCase(signInThunk.fulfilled, (state, action) => {
             state.user = action.payload.user;
+        });
+        builder.addCase(signOutThunk.fulfilled, (state) => {
+            return initialState;
         });
     },
 });

@@ -17,7 +17,7 @@ export function SignUp() {
         formState: { errors },
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => signUp(data).catch((err) => console.error(err.code, err.message));
+    const onSubmit: SubmitHandler<Inputs> = (data) => signUp(data);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
+import { useAppSelector } from '../../providers/store/hooks';
 
 import styles from './header.module.css';
 
 export function Header() {
+    // const { user } = useAppSelector((store) => store.user);
     const { user } = useAuth();
-
-    console.log(user);
 
     return (
         <header className={styles.header}>

@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 export function SignOut() {
     const { signOut } = useAuth();
 
-    signOut().catch((err) => console.error(err));
+    signOut();
 
     return <Navigate to="/" />;
 }
