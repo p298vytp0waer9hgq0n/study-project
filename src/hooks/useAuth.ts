@@ -1,22 +1,33 @@
-import { User } from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { fbAuth, fbOnAuthChange, fbSignIn, fbSignOut, fbSignUp } from '../api/firebase-auth';
+import { fbOnAuthChange } from '../api/firebase-auth';
+import { useAppDispatch, useAppSelector } from '../providers/store/hooks';
+import { setUser, signInThunk, signOutThunk, signUpThunk } from '../services/user-slice';
+import { Creds } from '../utils/types';
 
 export function useAuth() {
     //TODO: add ls api
-    const [user, setUser] = useState<User | null>(fbAuth.currentUser);
+    const dispatch = useAppDispatch();
 
-    const signIn = fbSignIn;
-    const signOut = fbSignOut;
-    const signUp = fbSignUp;
+    const { user } = useAppSelector((store) => store.user);
+    function signUp({ email, password }: Creds) {
+        dispatch(signUpThunk({ email, password }));
+    }
+    function signIn({ email, password }: Creds) {
+        dispatch(signInThunk({ email, password }));
+    }
+    function signOut() {
+        dispatch(signOutThunk());
+    }
 
     useEffect(() => {
-        const unlisten = fbOnAuthChange(setUser);
+        const unlisten = fbOnAuthChange((user) => {
+            dispatch(setUser(user));
+        });
         return () => {
             unlisten();
         };
-    }, []);
+    }, [dispatch]);
 
     return { user, signIn, signOut, signUp };
 }

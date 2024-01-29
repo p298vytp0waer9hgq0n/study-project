@@ -1,6 +1,8 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
+
+import styles from './authorization.module.css';
 
 type Inputs = {
     email: string;
@@ -14,9 +16,11 @@ export function SignIn() {
     const onSubmit: SubmitHandler<Inputs> = (data) => signIn(data);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <label>Email</label>
             <input type="email" {...register('email', { required: true })} />
-            <input type="password" {...register('password')} />
+            <label>Password</label>
+            <input type="password" {...register('password', { required: true })} />
             <button type="submit">Submit</button>
         </form>
     );
