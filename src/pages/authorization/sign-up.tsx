@@ -1,0 +1,28 @@
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { useAuth } from '../../hooks/useAuth';
+
+import styles from './authorization.module.css';
+
+type Inputs = {
+    email: string;
+    password: string;
+};
+
+export function SignUp() {
+    const { signUp } = useAuth();
+
+    const { register, handleSubmit } = useForm<Inputs>();
+
+    const onSubmit: SubmitHandler<Inputs> = (data) => signUp(data);
+
+    return (
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <label>Email</label>
+            <input type="email" {...register('email', { required: true })} />
+            <label>Password</label>
+            <input type="password" {...register('password', { required: true })} />
+            <button type="submit">Submit</button>
+        </form>
+    );
+}
