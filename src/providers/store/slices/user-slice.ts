@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from 'firebase/auth';
 
-import { fbSignIn, fbSignOut, fbSignUp } from '../api/firebase-auth';
+import { fbSignIn, fbSignOut, fbSignUp } from '../../../services/firebase-auth';
 
 export const signInThunk = createAsyncThunk('user/signIn', fbSignIn);
 export const signOutThunk = createAsyncThunk('user/signOut', fbSignOut);

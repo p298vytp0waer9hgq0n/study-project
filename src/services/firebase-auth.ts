@@ -9,7 +9,7 @@ import {
 } from 'firebase/auth';
 
 import { firebaseApp } from '../providers/firebase/firebase';
-import { Creds } from '../utils/types';
+import type { Creds } from '../utils/types';
 
 export const fbAuth = getAuth(firebaseApp);
 export const fbSignUp = ({ email, password }: Creds) => createUserWithEmailAndPassword(fbAuth, email, password);

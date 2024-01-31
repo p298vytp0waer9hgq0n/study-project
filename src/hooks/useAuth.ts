@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-import { fbOnAuthChange } from '../api/firebase-auth';
 import { useAppDispatch, useAppSelector } from '../providers/store/hooks';
-import { setUser, signInThunk, signOutThunk, signUpThunk } from '../services/user-slice';
-import { Creds } from '../utils/types';
+import { setUser, signInThunk, signOutThunk, signUpThunk } from '../providers/store/slices/user-slice';
+import { fbOnAuthChange } from '../services/firebase-auth';
+import type { Creds } from '../utils/types';
 
 export function useAuth() {
     //TODO: add ls api

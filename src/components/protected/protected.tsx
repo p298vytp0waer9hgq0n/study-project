@@ -3,11 +3,12 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 type Props = {
-    guest?: boolean;
+    requiresGuest?: boolean;
 };
 
-export function ProtectedRoute({ guest = false }: Props) {
+export function ProtectedRoute({ requiresGuest = false }: Props) {
     const { user } = useAuth();
-    const redirect = !guest ? '/signin' : '/';
-    return !user != !guest ? <Outlet /> : <Navigate to={redirect} />;
+    const userIsGuest = !user;
+    const redirect = requiresGuest ? '/' : '/signin';
+    return userIsGuest === requiresGuest ? <Outlet /> : <Navigate to={redirect} />;
 }

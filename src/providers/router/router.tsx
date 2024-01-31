@@ -17,7 +17,7 @@ export const appRouter = createBrowserRouter([
                 element: <Home />,
             },
             {
-                element: <ProtectedRoute guest />,
+                element: <ProtectedRoute requiresGuest />,
                 children: [
                     {
                         path: '/signup',
