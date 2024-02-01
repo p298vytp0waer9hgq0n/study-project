@@ -1,4 +1,4 @@
-import { RecipesDto } from '../types/types';
+import { RecipeDto, RecipesDto } from '../types/types';
 import { dummyjsonApi } from './dummyjs-api';
 
 export const recipesApi = dummyjsonApi.injectEndpoints({
@@ -10,7 +10,14 @@ export const recipesApi = dummyjsonApi.injectEndpoints({
                 };
             },
         }),
+        retrieveRecipe: builder.query<RecipeDto, number>({
+            query(id) {
+                return {
+                    url: `recipes/${id}`,
+                };
+            },
+        }),
     }),
 });
 
-export const { useRetrieveRecipesQuery } = recipesApi;
+export const { useRetrieveRecipesQuery, useRetrieveRecipeQuery } = recipesApi;
