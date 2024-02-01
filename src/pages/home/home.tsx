@@ -1,11 +1,14 @@
-import { useAuth } from '../../hooks/useAuth';
+import { RecipeList } from '../../components/recipe-list/recipe-list';
+import { useRetrieveRecipesQuery } from '../../providers/store/services/recipes';
 
 export function Home() {
-    const { user } = useAuth();
+    const { data: recipesRes, isSuccess, isLoading } = useRetrieveRecipesQuery();
+
     return (
         <>
-            <p>Main Page</p>
-            {user && <p>{`You are logged in as ${user.email}`}</p>}
+            <h2>Main Page</h2>
+            {isLoading && <p>Loading...</p>}
+            {isSuccess && <RecipeList recipes={recipesRes} />}
         </>
     );
 }

@@ -7,6 +7,7 @@ import { SignOut } from '../../pages/authorization/sign-out';
 import { SignUp } from '../../pages/authorization/sign-up';
 import { Favorite } from '../../pages/favorites/favorite';
 import { Home } from '../../pages/home/home';
+import { RecipePage } from '../../pages/recipe/recipe';
 
 export const appRouter = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
+            },
+            {
+                path: '/recipe/:id',
+                element: <RecipePage />,
             },
             {
                 element: <ProtectedRoute requiresGuest />,
