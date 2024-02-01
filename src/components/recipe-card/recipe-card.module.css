@@ -1,0 +1,21 @@
+.link {
+    display: block;
+    padding: 5px;
+    border: 1px solid var(--color-accent);
+    border-radius: 14px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.image {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.title {
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}

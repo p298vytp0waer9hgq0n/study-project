@@ -1,0 +1,6 @@
+.container {
+    display: grid;
+    grid: auto-flow / repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px 17px;
+    list-style: none;
+}

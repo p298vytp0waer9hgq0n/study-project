@@ -1,0 +1,27 @@
+.recipe {
+    display: grid;
+    margin: auto;
+    max-width: 70%;
+    grid-template-areas:
+        'title title'
+        'image ingredients'
+        'image instructions';
+    gap: 15px;
+}
+
+.title {
+    grid-area: title;
+}
+
+.image {
+    max-width: 500px;
+    grid-area: image;
+}
+
+.ingredients {
+    grid-area: ingredients;
+}
+
+.instructions {
+    grid-area: instructions;
+}

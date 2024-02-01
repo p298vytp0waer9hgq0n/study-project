@@ -32,6 +32,7 @@ export function Header() {
                     )}
                     {user && (
                         <>
+                            <p>{user.email}</p>
                             <li>
                                 <Link className={styles.navlink} to={'/favorite'}>
                                     Favorite
