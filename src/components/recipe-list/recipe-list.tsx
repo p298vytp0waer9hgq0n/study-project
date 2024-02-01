@@ -1,16 +1,14 @@
-import { useRetrieveRecipesQuery } from '../../providers/store/services/recipes';
+import { RecipesDto } from '../../providers/store/types/types';
 import { RecipeCard } from '../recipe-card/recipe-card';
 
 import styles from './recipe-list.module.css';
 
-export function RecipeList() {
-    const { data: recipesRes, isSuccess, isLoading } = useRetrieveRecipesQuery();
-    const elements = recipesRes?.recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
+type Props = {
+    recipes: RecipesDto;
+};
 
-    return (
-        <section>
-            {isLoading && <p>Loading...</p>}
-            {isSuccess && <ul className={styles.container}>{elements}</ul>}
-        </section>
-    );
+export function RecipeList({ recipes }: Props) {
+    const elements = recipes?.recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
+
+    return <ul className={styles.container}>{elements}</ul>;
 }
