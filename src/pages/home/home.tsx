@@ -8,7 +8,7 @@ export function Home() {
         <>
             <h2>Main Page</h2>
             {isLoading && <p>Loading...</p>}
-            {isSuccess && <RecipeList recipes={recipesRes} />}
+            {isSuccess && <RecipeList recipes={recipesRes.recipes} />}
         </>
     );
 }

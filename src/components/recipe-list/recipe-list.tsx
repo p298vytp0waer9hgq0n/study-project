@@ -1,14 +1,14 @@
-import { RecipesDto } from '../../providers/store/types/types';
+import { RecipeDto } from '../../providers/store/types/types';
 import { RecipeCard } from '../recipe-card/recipe-card';
 
 import styles from './recipe-list.module.css';
 
 type Props = {
-    recipes: RecipesDto;
+    recipes: RecipeDto[];
 };
 
 export function RecipeList({ recipes }: Props) {
-    const elements = recipes?.recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
+    const elements = recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
 
     return <ul className={styles.container}>{elements}</ul>;
 }
