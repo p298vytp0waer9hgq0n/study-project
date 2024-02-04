@@ -6,6 +6,7 @@ import { SignIn } from '../../pages/authorization/sign-in';
 import { SignOut } from '../../pages/authorization/sign-out';
 import { SignUp } from '../../pages/authorization/sign-up';
 import { Favorite } from '../../pages/favorites/favorite';
+import { History } from '../../pages/history/history';
 import { Home } from '../../pages/home/home';
 import { RecipePage } from '../../pages/recipe/recipe';
 
@@ -40,6 +41,10 @@ export const appRouter = createBrowserRouter([
                     {
                         path: '/favorite',
                         element: <Favorite />,
+                    },
+                    {
+                        path: '/history',
+                        element: <History />,
                     },
                     {
                         path: '/signout',
