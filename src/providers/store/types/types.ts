@@ -23,3 +23,14 @@ export type RecipesDto = {
     skip: number;
     total: number;
 };
+
+export type UserData = {
+    favorites: number[];
+    history: number[];
+};
+
+export type HistoryRecord = {
+    name: string;
+    link: string;
+    timestamp: number;
+};

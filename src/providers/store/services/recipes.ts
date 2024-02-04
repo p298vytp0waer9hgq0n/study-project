@@ -1,4 +1,4 @@
-import { RecipeDto, RecipesDto } from '../types/types';
+import type { RecipeDto, RecipesDto } from '../types/types';
 import { dummyjsonApi } from './dummyjs-api';
 
 export const recipesApi = dummyjsonApi.injectEndpoints({

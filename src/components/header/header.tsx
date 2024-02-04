@@ -35,7 +35,12 @@ export function Header() {
                             <p>{user.email}</p>
                             <li>
                                 <Link className={styles.navlink} to={'/favorite'}>
-                                    Favorite
+                                    Favorites
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className={styles.navlink} to={'/history'}>
+                                    History
                                 </Link>
                             </li>
                             <li>
