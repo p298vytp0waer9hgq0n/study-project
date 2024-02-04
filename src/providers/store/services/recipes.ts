@@ -1,3 +1,4 @@
+import { isRecipe } from '../../../utils/is-recipe';
 import type { RecipeDto, RecipesDto } from '../types/types';
 import { dummyjsonApi } from './dummyjs-api';
 
@@ -17,7 +18,19 @@ export const recipesApi = dummyjsonApi.injectEndpoints({
                 };
             },
         }),
+        retrieveSomeRecipes: builder.query<RecipeDto[], number[]>({
+            queryFn: async (recipesIds, _api, _options, baseQuery) => {
+                const data = await Promise.all(
+                    recipesIds.map(async (id) => {
+                        const result = await baseQuery(`recipes/${id}`);
+                        return result.data;
+                    }),
+                );
+                const res = data.filter(isRecipe);
+                return { data: res };
+            },
+        }),
     }),
 });
 
-export const { useRetrieveRecipesQuery, useRetrieveRecipeQuery } = recipesApi;
+export const { useRetrieveRecipesQuery, useRetrieveRecipeQuery, useRetrieveSomeRecipesQuery } = recipesApi;
