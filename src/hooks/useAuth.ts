@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../providers/store/hooks';
 import { setData, setUser, signInThunk, signOutThunk, signUpThunk } from '../providers/store/slices/user-slice';
 import { fbOnAuthChange } from '../services/firebase-auth';
 import { getFbDoc, getFbDocRef } from '../services/firebase-db';
-import { userCollectionName } from '../utils/constants';
+import { USER_COLLECTION_NAME } from '../utils/constants';
 import type { Creds } from '../utils/types';
 
 export function useAuth() {
@@ -27,7 +27,7 @@ export function useAuth() {
         const unlisten = fbOnAuthChange((user) => {
             dispatch(setUser(user));
             if (user) {
-                const userStorageRef = getFbDocRef(userCollectionName, user.uid);
+                const userStorageRef = getFbDocRef(USER_COLLECTION_NAME, user.uid);
                 getFbDoc(userStorageRef).then((snap) => {
                     if (snap.exists()) {
                         dispatch(setData(snap.data()));

@@ -10,32 +10,33 @@ import { History } from '../../pages/history/history';
 import { Home } from '../../pages/home/home';
 import { RecipePage } from '../../pages/recipe/recipe';
 import { Search } from '../../pages/search/search';
+import { ROUTES } from '../../utils/constants';
 
 export const appRouter = createBrowserRouter([
     {
         element: <App />,
         children: [
             {
-                path: '/',
+                path: ROUTES.MAIN,
                 element: <Home />,
             },
             {
-                path: '/recipe/:id',
+                path: `${ROUTES.RECIPE}/:id`,
                 element: <RecipePage />,
             },
             {
-                path: '/search/:search',
+                path: `${ROUTES.SEARCH}/:search`,
                 element: <Search />,
             },
             {
                 element: <ProtectedRoute requiresGuest />,
                 children: [
                     {
-                        path: '/signup',
+                        path: ROUTES.SIGNUP,
                         element: <SignUp />,
                     },
                     {
-                        path: '/signin',
+                        path: ROUTES.SIGNIN,
                         element: <SignIn />,
                     },
                 ],
@@ -44,15 +45,15 @@ export const appRouter = createBrowserRouter([
                 element: <ProtectedRoute />,
                 children: [
                     {
-                        path: '/favorite',
+                        path: ROUTES.FAVORITES,
                         element: <Favorite />,
                     },
                     {
-                        path: '/history',
+                        path: ROUTES.HISTORY,
                         element: <History />,
                     },
                     {
-                        path: '/signout',
+                        path: ROUTES.SIGNOUT,
                         element: <SignOut />,
                     },
                 ],

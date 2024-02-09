@@ -13,10 +13,10 @@ import {
 } from 'firebase/firestore';
 
 import { firebaseApp } from '../providers/firebase/firebase';
-import { userCollectionName } from '../utils/constants';
+import { USER_COLLECTION_NAME } from '../utils/constants';
 
 export function initiateUserStorage(user: User) {
-    addFbRecord(userCollectionName, user.uid, { favorites: [], history: [] });
+    addFbRecord(USER_COLLECTION_NAME, user.uid, { favorites: [], history: [] });
     return user;
 }
 

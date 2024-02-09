@@ -4,9 +4,7 @@ import { useRetrieveHistoryQuery } from '../../providers/store/services/history'
 export function History() {
     const { data: history, isSuccess } = useRetrieveHistoryQuery();
     const elements = history
-        ?.map(({ name, link, timestamp }) => (
-            <HistoryRow key={name + timestamp} name={name} link={link} timestamp={timestamp} />
-        ))
+        ?.map(({ word, timestamp }) => <HistoryRow key={word + timestamp} name={word} timestamp={timestamp} />)
         .reverse();
 
     return <section>{isSuccess && elements}</section>;

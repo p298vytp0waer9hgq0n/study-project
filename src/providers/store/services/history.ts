@@ -1,5 +1,5 @@
 import { addToFbArrayParam, getFbDoc, getFbDocRef } from '../../../services/firebase-db';
-import { historyName, userCollectionName } from '../../../utils/constants';
+import { HISTORY_NAME, USER_COLLECTION_NAME } from '../../../utils/constants';
 import type { RootState } from '../store';
 import type { HistoryRecord } from '../types/types';
 import { historyApi } from './history-api';
@@ -13,7 +13,7 @@ export const historyEp = historyApi.injectEndpoints({
                 if (!user) {
                     return { data: [] };
                 }
-                const userStorageRef = getFbDocRef(userCollectionName, user.uid);
+                const userStorageRef = getFbDocRef(USER_COLLECTION_NAME, user.uid);
                 const doc = await getFbDoc(userStorageRef);
                 if (doc.exists()) {
                     return { data: doc.data().history };
@@ -30,8 +30,8 @@ export const historyEp = historyApi.injectEndpoints({
                 if (!user) {
                     return { data: null };
                 }
-                const userStorageRef = getFbDocRef(userCollectionName, user.uid);
-                addToFbArrayParam(userStorageRef, historyName, record);
+                const userStorageRef = getFbDocRef(USER_COLLECTION_NAME, user.uid);
+                addToFbArrayParam(userStorageRef, HISTORY_NAME, record);
                 return { data: record };
             },
             invalidatesTags: ['history'],

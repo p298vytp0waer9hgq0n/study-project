@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { useStorage } from '../../hooks/useStorage';
 import { useAppSelector } from '../../providers/store/hooks';
+import { ROUTES } from '../../utils/constants';
 
 import styles from './recipe-card.module.css';
 
@@ -30,11 +31,11 @@ export function RecipeCard({ recipe }: Props) {
 
     return (
         <li className={styles.container}>
-            <Link to={`/recipe/${id}`}>
+            <Link to={`${ROUTES.RECIPE}/${id}`}>
                 <img src={image} className={styles.image} />
             </Link>
             <div className={styles.title}>
-                <Link to={`/recipe/${id}`} className={styles.link}>
+                <Link to={`${ROUTES.RECIPE}/${id}`} className={styles.link}>
                     <p>{name}</p>
                 </Link>
                 {loggedIn && (

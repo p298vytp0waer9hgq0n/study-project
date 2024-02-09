@@ -30,7 +30,6 @@ export type UserData = {
 };
 
 export type HistoryRecord = {
-    name: string;
-    link: string;
+    word: string;
     timestamp: number;
 };

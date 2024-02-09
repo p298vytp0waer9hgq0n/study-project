@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
+import { ROUTES } from '../../utils/constants';
 
 import styles from './header.module.css';
 
@@ -10,7 +11,7 @@ export function Header() {
     return (
         <header className={styles.header}>
             <h1>
-                <Link className={styles.title} to={'/'}>
+                <Link className={styles.title} to={ROUTES.MAIN}>
                     Site name
                 </Link>
             </h1>
@@ -19,12 +20,12 @@ export function Header() {
                     {!user && (
                         <>
                             <li>
-                                <Link className={styles.navlink} to={'/signup'}>
+                                <Link className={styles.navlink} to={ROUTES.SIGNUP}>
                                     Sign Up
                                 </Link>
                             </li>
                             <li>
-                                <Link className={styles.navlink} to={'/signin'}>
+                                <Link className={styles.navlink} to={ROUTES.SIGNIN}>
                                     Sign In
                                 </Link>
                             </li>
@@ -34,17 +35,17 @@ export function Header() {
                         <>
                             <p>{user.email}</p>
                             <li>
-                                <Link className={styles.navlink} to={'/favorite'}>
+                                <Link className={styles.navlink} to={ROUTES.FAVORITES}>
                                     Favorites
                                 </Link>
                             </li>
                             <li>
-                                <Link className={styles.navlink} to={'/history'}>
+                                <Link className={styles.navlink} to={ROUTES.HISTORY}>
                                     History
                                 </Link>
                             </li>
                             <li>
-                                <Link className={styles.navlink} to={'/signout'}>
+                                <Link className={styles.navlink} to={ROUTES.SIGNOUT}>
                                     Sign Out
                                 </Link>
                             </li>
