@@ -1,3 +1,4 @@
+import { skipToken } from '@reduxjs/toolkit/query';
 import { useEffect } from 'react';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 
@@ -8,7 +9,7 @@ import { useRetrieveRecipeQuery } from '../../providers/store/services/recipes';
 export function RecipePage() {
     const { id } = useParams();
     const location = useLocation();
-    const { data: recipe, isSuccess, isLoading } = useRetrieveRecipeQuery(Number(id), { skip: !id });
+    const { data: recipe, isSuccess, isLoading } = useRetrieveRecipeQuery(Number(id) || skipToken);
     const [historyTrigger] = useAddToHistoryMutation();
     useEffect(() => {
         if (recipe) {

@@ -30,7 +30,15 @@ export const recipesApi = dummyjsonApi.injectEndpoints({
                 return { data: res };
             },
         }),
+        findRecipes: builder.query<RecipesDto, { str: string; limit?: number }>({
+            query({ str, limit = 5 }) {
+                return {
+                    url: `recipes/search?q=${encodeURIComponent(str)}&limit=${limit}`,
+                };
+            },
+        }),
     }),
 });
 
-export const { useRetrieveRecipesQuery, useRetrieveRecipeQuery, useRetrieveSomeRecipesQuery } = recipesApi;
+export const { useRetrieveRecipesQuery, useRetrieveRecipeQuery, useRetrieveSomeRecipesQuery, useFindRecipesQuery } =
+    recipesApi;
