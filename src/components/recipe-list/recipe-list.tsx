@@ -8,7 +8,10 @@ type Props = {
 };
 
 export function RecipeList({ recipes }: Props) {
-    const elements = recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
+    const elements = recipes?.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
+    if (!elements.length) {
+        return <p>Nothing to display</p>;
+    }
 
     return <ul className={styles.container}>{elements}</ul>;
 }

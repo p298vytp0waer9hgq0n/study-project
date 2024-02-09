@@ -11,7 +11,7 @@ import styles from './search-bar.module.css';
 
 export function SearchBar() {
     const navigate = useNavigate();
-    const [search, setSearch] = useState<string | undefined>();
+    const [search, setSearch] = useState<string>('');
     const [historyAddTrigger] = useAddToHistoryMutation();
 
     const value = useDebounce(search, 1300);
@@ -46,7 +46,7 @@ export function SearchBar() {
                         setSearch(evt.target.value);
                     }}
                 />
-                <button type="submit">Искать</button>
+                <button type="submit">Search</button>
             </form>
             {currentData && <div className={styles.list}>{elements}</div>}
         </div>

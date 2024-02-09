@@ -7,5 +7,11 @@ export function History() {
         ?.map(({ word, timestamp }) => <HistoryRow key={word + timestamp} name={word} timestamp={timestamp} />)
         .reverse();
 
-    return <section>{isSuccess && elements}</section>;
+    return (
+        <>
+            <h2>Search history</h2>
+            {!history?.length && <p>Search history is empty</p>}
+            {isSuccess && elements}
+        </>
+    );
 }
