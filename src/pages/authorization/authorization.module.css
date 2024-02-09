@@ -27,3 +27,13 @@
     border: 2px solid rgb(1, 203, 203);
     color: rgb(1, 203, 203);
 }
+
+.form button:disabled {
+    background: rgb(162, 162, 162);
+    border: none;
+    color: #ddd;
+}
+
+.form span {
+    color: red;
+}
