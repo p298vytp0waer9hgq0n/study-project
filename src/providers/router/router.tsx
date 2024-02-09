@@ -9,6 +9,7 @@ import { Favorite } from '../../pages/favorites/favorite';
 import { History } from '../../pages/history/history';
 import { Home } from '../../pages/home/home';
 import { RecipePage } from '../../pages/recipe/recipe';
+import { Search } from '../../pages/search/search';
 
 export const appRouter = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/recipe/:id',
                 element: <RecipePage />,
+            },
+            {
+                path: '/search/:search',
+                element: <Search />,
             },
             {
                 element: <ProtectedRoute requiresGuest />,
