@@ -1,10 +1,21 @@
+import { useCallback } from 'react';
+
 import { HistoryRow } from '../../components/history-row/history-row';
-import { useRetrieveHistoryQuery } from '../../providers/store/services/history';
+import { useRemoveFromHistoryMutation, useRetrieveHistoryQuery } from '../../providers/store/services/history';
 
 export function History() {
     const { data: history, isSuccess } = useRetrieveHistoryQuery();
+    const [removeTrigger] = useRemoveFromHistoryMutation();
+    const handleDelete = useCallback(
+        (name: string, timestamp: number) => {
+            removeTrigger({ word: name, timestamp });
+        },
+        [removeTrigger],
+    );
     const elements = history
-        ?.map(({ word, timestamp }) => <HistoryRow key={word + timestamp} name={word} timestamp={timestamp} />)
+        ?.map(({ word, timestamp }) => (
+            <HistoryRow key={word + timestamp} name={word} timestamp={timestamp} handleDelete={handleDelete} />
+        ))
         .reverse();
 
     return (

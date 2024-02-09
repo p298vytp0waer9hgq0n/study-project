@@ -1,4 +1,4 @@
-import { addToFbArrayParam, getFbDoc, getFbDocRef } from '../../../services/firebase-db';
+import { addToFbArrayParam, getFbDoc, getFbDocRef, removeFromFbArrayParam } from '../../../services/firebase-db';
 import { HISTORY_NAME, USER_COLLECTION_NAME } from '../../../utils/constants';
 import type { RootState } from '../store';
 import type { HistoryRecord } from '../types/types';
@@ -36,7 +36,20 @@ export const historyEp = historyApi.injectEndpoints({
             },
             invalidatesTags: ['history'],
         }),
+        removeFromHistory: builder.mutation<HistoryRecord | null, HistoryRecord>({
+            queryFn(record, api) {
+                const { user: userState } = api.getState() as RootState;
+                const user = userState.user;
+                if (!user) {
+                    return { data: null };
+                }
+                const userStorageRef = getFbDocRef(USER_COLLECTION_NAME, user.uid);
+                removeFromFbArrayParam(userStorageRef, HISTORY_NAME, record);
+                return { data: record };
+            },
+            invalidatesTags: ['history'],
+        }),
     }),
 });
 
-export const { useAddToHistoryMutation, useRetrieveHistoryQuery } = historyEp;
+export const { useAddToHistoryMutation, useRetrieveHistoryQuery, useRemoveFromHistoryMutation } = historyEp;
