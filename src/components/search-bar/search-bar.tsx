@@ -1,5 +1,5 @@
 import { skipToken } from '@reduxjs/toolkit/query';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useDebounce } from '../../hooks/useDebounce';
@@ -9,10 +9,16 @@ import { ROUTES } from '../../utils/constants';
 
 import styles from './search-bar.module.css';
 
-export function SearchBar() {
+type Props = {
+    initSearch?: string;
+};
+
+export function SearchBar({ initSearch = '' }: Props) {
     const navigate = useNavigate();
-    const [search, setSearch] = useState<string>('');
+    const [search, setSearch] = useState<string>(initSearch);
+    const [hasFocus, setHasFocus] = useState<boolean>(false);
     const [historyAddTrigger] = useAddToHistoryMutation();
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const value = useDebounce(search, 1300);
     const { currentData } = useFindRecipesQuery(value ? { str: value } : skipToken);
@@ -39,16 +45,19 @@ export function SearchBar() {
             <form className={styles.bar} onSubmit={handleSubmit}>
                 <input
                     type="text"
+                    ref={inputRef}
                     className={styles.input}
                     placeholder="Search"
                     value={search}
+                    onFocus={() => setHasFocus(true)}
+                    onBlur={() => setHasFocus(false)}
                     onChange={(evt) => {
                         setSearch(evt.target.value);
                     }}
                 />
                 <button type="submit">Search</button>
             </form>
-            {currentData && <div className={styles.list}>{elements}</div>}
+            {hasFocus && currentData && <div className={styles.list}>{elements}</div>}
         </div>
     );
 }
