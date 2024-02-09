@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -49,3 +50,11 @@ export function RecipeCard({ recipe }: Props) {
         </li>
     );
 }
+
+RecipeCard.propTypes = {
+    recipe: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+    }).isRequired,
+};

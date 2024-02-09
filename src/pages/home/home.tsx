@@ -1,3 +1,4 @@
+import { Loading } from '../../components/loading/loading';
 import { RecipeList } from '../../components/recipe-list/recipe-list';
 import { SearchBar } from '../../components/search-bar/search-bar';
 import { useRetrieveRecipesQuery } from '../../providers/store/services/recipes';
@@ -13,7 +14,7 @@ export function Home() {
                 <h2>Main Page</h2>
                 <SearchBar />
             </div>
-            {isLoading && <p>Loading...</p>}
+            {isLoading && <Loading />}
             {isSuccess && <RecipeList recipes={recipesRes.recipes} />}
         </>
     );

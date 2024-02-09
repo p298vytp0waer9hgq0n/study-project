@@ -1,5 +1,6 @@
 import { skipToken } from '@reduxjs/toolkit/query';
 
+import { Loading } from '../../components/loading/loading';
 import { RecipeList } from '../../components/recipe-list/recipe-list';
 import { useAppSelector } from '../../providers/store/hooks';
 import { useRetrieveSomeRecipesQuery } from '../../providers/store/services/recipes';
@@ -16,7 +17,7 @@ export function Favorite() {
         <>
             <h2>Favorites</h2>
             {!favorites.length && <p>No favorite recipes present. Add some first.</p>}
-            {isLoading && <p>Loading...</p>}
+            {isLoading && <Loading />}
             {isSuccess && <RecipeList recipes={recipes} />}
         </>
     );

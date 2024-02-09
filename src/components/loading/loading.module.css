@@ -1,0 +1,16 @@
+.container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.spinner {
+    margin: auto;
+    transform-origin: center;
+    animation: spinner_anim 0.75s infinite linear;
+}
+@keyframes spinner_anim {
+    100% {
+        transform: rotate(360deg);
+    }
+}

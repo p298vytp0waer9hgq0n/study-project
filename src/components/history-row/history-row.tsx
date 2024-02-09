@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { ROUTES } from '../../utils/constants';
@@ -22,3 +23,8 @@ export function HistoryRow({ name, timestamp, handleDelete }: Props) {
         </li>
     );
 }
+HistoryRow.propTypes = {
+    name: PropTypes.string.isRequired,
+    timestamp: PropTypes.number.isRequired,
+    handleDelete: PropTypes.func.isRequired,
+};
