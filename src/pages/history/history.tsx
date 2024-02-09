@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { HistoryRow } from '../../components/history-row/history-row';
 import { useRemoveFromHistoryMutation, useRetrieveHistoryQuery } from '../../providers/store/services/history';
@@ -12,11 +12,15 @@ export function History() {
         },
         [removeTrigger],
     );
-    const elements = history
-        ?.map(({ word, timestamp }) => (
-            <HistoryRow key={word + timestamp} name={word} timestamp={timestamp} handleDelete={handleDelete} />
-        ))
-        .reverse();
+    const elements = useMemo(
+        () =>
+            history
+                ?.map(({ word, timestamp }) => (
+                    <HistoryRow key={word + timestamp} name={word} timestamp={timestamp} handleDelete={handleDelete} />
+                ))
+                .reverse(),
+        [handleDelete, history],
+    );
 
     return (
         <>

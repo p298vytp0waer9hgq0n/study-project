@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import { AppContext, AppContextType } from '../../App';
 import { useStorage } from '../../hooks/useStorage';
 import { useAppSelector } from '../../providers/store/hooks';
 import { ROUTES } from '../../utils/constants';
@@ -16,11 +18,14 @@ export type Props = {
 };
 
 export function RecipeCard({ recipe }: Props) {
+    const { theme } = useContext(AppContext) as AppContextType;
     const { id, name, image } = recipe;
     const { data, user } = useAppSelector((store) => store.user);
     const loggedIn = Boolean(user);
     const { addToFavorites, removeFromFavorites } = useStorage();
     const cardIsFavorite = data.favorites?.includes(id);
+
+    const containerStyle = theme === 'very light' ? styles.container : `${styles.container} ${styles.container_dark}`;
 
     function handleLike() {
         if (cardIsFavorite) {
@@ -31,7 +36,7 @@ export function RecipeCard({ recipe }: Props) {
     }
 
     return (
-        <li className={styles.container}>
+        <li className={containerStyle}>
             <Link to={`${ROUTES.RECIPE}/${id}`}>
                 <img src={image} className={styles.image} />
             </Link>

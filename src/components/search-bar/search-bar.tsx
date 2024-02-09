@@ -25,7 +25,7 @@ export function SearchBar({ initSearch = '' }: Props) {
     const elements = useMemo(() => {
         if (currentData) {
             return currentData?.recipes.map((recipe) => (
-                <Link className={styles.link} to={`${ROUTES.RECIPE}/${recipe.id}`} key={recipe.name}>
+                <Link className={styles.link} to={`${ROUTES.RECIPE}/${recipe.id}`} key={recipe.id}>
                     {recipe.name}
                 </Link>
             ));

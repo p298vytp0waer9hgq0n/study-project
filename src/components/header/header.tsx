@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
 import { ROUTES } from '../../utils/constants';
+import { ThemeSwitcher } from '../theme-switcher/theme-switcher';
 
 import styles from './header.module.css';
 
@@ -17,6 +18,7 @@ export function Header() {
             </h1>
             <nav>
                 <ul className={styles.navigation}>
+                    <ThemeSwitcher />
                     {!user && (
                         <>
                             <li>
