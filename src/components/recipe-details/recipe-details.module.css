@@ -16,6 +16,17 @@
 .image {
     max-width: 500px;
     grid-area: image;
+    border-radius: 10px;
+}
+
+.like {
+    display: flex;
+    grid-area: image;
+    margin: 30px;
+    align-self: flex-end;
+    justify-self: flex-end;
+    scale: 2;
+    background-color: #fffc;
 }
 
 .ingredients {

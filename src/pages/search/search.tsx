@@ -10,6 +10,7 @@ export function Search() {
 
     return (
         <>
+            <h2>Search results</h2>
             {isLoading && <p>Loading...</p>}
             {isSuccess && <RecipeList recipes={data.recipes} />}
         </>

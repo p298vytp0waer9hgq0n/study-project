@@ -1,0 +1,16 @@
+.button {
+    padding: 4px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: var(--color-accent);
+    stroke: currentColor;
+    fill: none;
+    cursor: pointer;
+}
+
+.button_liked {
+    color: rgb(242, 57, 57);
+    fill: currentColor;
+    stroke: none;
+}
