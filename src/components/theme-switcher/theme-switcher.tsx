@@ -9,9 +9,7 @@ export function ThemeSwitcher() {
     const isVeryLight = theme === 'very light';
     const switcherStyle = isVeryLight ? styles.switcher : `${styles.switcher} ${styles.switcher_dark}`;
     function handleClick() {
-        if (setTheme) {
-            setTheme(isVeryLight ? 'light' : 'very light');
-        }
+        setTheme(isVeryLight ? 'light' : 'very light');
     }
     return <div className={switcherStyle} onClick={handleClick}></div>;
 }

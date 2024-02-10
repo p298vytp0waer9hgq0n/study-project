@@ -13,7 +13,7 @@ export function Header() {
         <header className={styles.header}>
             <h1>
                 <Link className={styles.title} to={ROUTES.MAIN}>
-                    Site name
+                    Logo
                 </Link>
             </h1>
             <nav>

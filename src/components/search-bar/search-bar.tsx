@@ -20,7 +20,7 @@ export function SearchBar({ initSearch = '' }: Props) {
     const [historyAddTrigger] = useAddToHistoryMutation();
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const value = useDebounce(search, 1300);
+    const value = useDebounce(search, 1000);
     const { currentData } = useFindRecipesQuery(value ? { str: value } : skipToken);
     const elements = useMemo(() => {
         if (currentData) {
