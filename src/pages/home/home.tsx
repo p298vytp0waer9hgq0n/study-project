@@ -6,7 +6,7 @@ import { useRetrieveRecipesQuery } from '../../providers/store/services/recipes'
 import styles from './home.module.css';
 
 export function Home() {
-    const { data: recipesRes, isSuccess, isLoading } = useRetrieveRecipesQuery();
+    const { data, isSuccess, isLoading } = useRetrieveRecipesQuery();
 
     return (
         <>
@@ -15,7 +15,7 @@ export function Home() {
                 <SearchBar />
             </div>
             {isLoading && <Loading />}
-            {isSuccess && <RecipeList recipes={recipesRes.recipes} />}
+            {isSuccess && <RecipeList recipes={data} />}
         </>
     );
 }

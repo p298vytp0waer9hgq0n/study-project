@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import { userListenerMiddleware } from './middleware';
 import { dummyjsonApi } from './services/dummyjs-api';
 import { historyApi } from './services/history-api';
 import { userReducer } from './slices/user-slice';
@@ -15,7 +16,9 @@ export const store = configureStore({
     middleware: (getDefault) =>
         getDefault({
             serializableCheck: false,
-        }).concat([dummyjsonApi.middleware, historyApi.middleware]),
+        })
+            .concat([dummyjsonApi.middleware, historyApi.middleware])
+            .prepend(userListenerMiddleware.middleware),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

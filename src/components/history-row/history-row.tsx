@@ -15,8 +15,8 @@ export function HistoryRow({ name, timestamp, handleDelete }: Props) {
     const date = new Date(timestamp).toUTCString();
     return (
         <li className={styles.container}>
-            <Link to={`${ROUTES.SEARCH}/${name}`}>{name}</Link>
             <p>{date}</p>
+            <Link to={`${ROUTES.SEARCH}/${name}`}>{name}</Link>
             <button type="button" onClick={() => handleDelete(name, timestamp)}>
                 Delete
             </button>

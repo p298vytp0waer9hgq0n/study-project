@@ -8,6 +8,7 @@ import { SignUp } from '../../pages/authorization/sign-up';
 import { Favorite } from '../../pages/favorites/favorite';
 import { History } from '../../pages/history/history';
 import { Home } from '../../pages/home/home';
+import { NotFound } from '../../pages/not-found/not-found';
 import { RecipePage } from '../../pages/recipe/recipe';
 import { Search } from '../../pages/search/search';
 import { ROUTES } from '../../utils/constants';
@@ -59,5 +60,9 @@ export const appRouter = createBrowserRouter([
                 ],
             },
         ],
+    },
+    {
+        path: '*',
+        element: <NotFound />,
     },
 ]);

@@ -19,7 +19,7 @@ type UserState = {
 
 const initialState: UserState = {
     user: null,
-    isLoading: false,
+    isLoading: true,
     hasError: false,
     data: {
         favorites: [],
@@ -33,6 +33,7 @@ export const userSlice = createSlice({
     reducers: {
         setUser: (state, action) => {
             state.user = action.payload;
+            state.isLoading = false;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -45,11 +46,21 @@ export const userSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
+        builder.addCase(signInThunk.pending, (state) => {
+            state.isLoading = true;
+            state.hasError = false;
+        });
         builder.addCase(signInThunk.fulfilled, (state, action) => {
             state.user = action.payload.user;
+            state.isLoading = false;
+        });
+        builder.addCase(signUpThunk.pending, (state) => {
+            state.isLoading = true;
+            state.hasError = false;
         });
         builder.addCase(signUpThunk.fulfilled, (state, action) => {
             state.user = action.payload;
+            state.isLoading = false;
         });
         builder.addCase(signOutThunk.fulfilled, () => {
             return initialState;

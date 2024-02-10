@@ -4,12 +4,13 @@ import { dummyjsonApi } from './dummyjs-api';
 
 export const recipesApi = dummyjsonApi.injectEndpoints({
     endpoints: (builder) => ({
-        retrieveRecipes: builder.query<RecipesDto, void>({
+        retrieveRecipes: builder.query<RecipeDto[], void>({
             query() {
                 return {
                     url: 'recipes/',
                 };
             },
+            transformResponse: (response: RecipesDto) => response.recipes,
         }),
         retrieveRecipe: builder.query<RecipeDto, number>({
             query(id) {

@@ -13,11 +13,14 @@ export function Favorite() {
         isSuccess,
     } = useRetrieveSomeRecipesQuery(favorites.length ? favorites : skipToken);
 
+    if (isLoading) {
+        return <Loading />;
+    }
+
     return (
         <>
             <h2>Favorites</h2>
-            {!favorites.length && <p>No favorite recipes present. Add some first.</p>}
-            {isLoading && <Loading />}
+            {!favorites.length && isSuccess && <p>No favorite recipes present. Add some first.</p>}
             {isSuccess && <RecipeList recipes={recipes} />}
         </>
     );
