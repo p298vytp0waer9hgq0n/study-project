@@ -1,5 +1,5 @@
 import { skipToken } from '@reduxjs/toolkit/query';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useDebounce } from '../../hooks/useDebounce';
@@ -18,7 +18,7 @@ export function SearchBar({ initSearch = '' }: Props) {
     const [search, setSearch] = useState<string>(initSearch);
     const [hasFocus, setHasFocus] = useState<boolean>(false);
     const [historyAddTrigger] = useAddToHistoryMutation();
-    const inputRef = useRef<HTMLInputElement>(null);
+    const contRef = useRef<HTMLDivElement>(null);
 
     const value = useDebounce(search, 1000);
     const { currentData } = useFindRecipesQuery(value ? { str: value } : skipToken);
@@ -40,17 +40,25 @@ export function SearchBar({ initSearch = '' }: Props) {
         }
     }
 
+    useEffect(() => {
+        function closeDropdown(evt: MouseEvent) {
+            if (!contRef.current?.contains(evt.target as Node)) {
+                setHasFocus(false);
+            }
+        }
+        document.addEventListener('click', closeDropdown);
+        return () => document.removeEventListener('click', closeDropdown);
+    }, []);
+
     return (
-        <div className={styles.container}>
+        <div className={styles.container} ref={contRef}>
             <form className={styles.bar} onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    ref={inputRef}
                     className={styles.input}
                     placeholder="Search"
                     value={search}
                     onFocus={() => setHasFocus(true)}
-                    onBlur={() => setHasFocus(false)}
                     onChange={(evt) => {
                         setSearch(evt.target.value);
                     }}

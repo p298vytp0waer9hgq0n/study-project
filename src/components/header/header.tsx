@@ -7,7 +7,11 @@ import { ThemeSwitcher } from '../theme-switcher/theme-switcher';
 import styles from './header.module.css';
 
 export function Header() {
-    const { user } = useAuth();
+    const { user, isLoading } = useAuth();
+
+    if (isLoading) {
+        return;
+    }
 
     return (
         <header className={styles.header}>
